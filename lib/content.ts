@@ -47,22 +47,26 @@ const filePath = path.join(process.cwd(), 'data', 'site-content.json');
 function normalizeEventPhotos(value: unknown): EventPhotoItem[] {
   if (!Array.isArray(value)) return [];
 
-  return value
-    .map((item) => {
-      if (typeof item === 'string') return { imageUrl: item, linkUrl: '', title: '' };
-      if (!item || typeof item !== 'object') return null;
+  return value.reduce<EventPhotoItem[]>((items, item) => {
+    if (typeof item === 'string') {
+      items.push({ imageUrl: item, linkUrl: '', title: '' });
+      return items;
+    }
 
-      const photo = item as Record<string, unknown>;
-      const imageUrl = typeof photo.imageUrl === 'string' ? photo.imageUrl : '';
-      if (!imageUrl) return null;
+    if (!item || typeof item !== 'object') return items;
 
-      return {
-        imageUrl,
-        linkUrl: typeof photo.linkUrl === 'string' ? photo.linkUrl : '',
-        title: typeof photo.title === 'string' ? photo.title : ''
-      };
-    })
-    .filter((item): item is EventPhotoItem => Boolean(item));
+    const photo = item as Record<string, unknown>;
+    const imageUrl = typeof photo.imageUrl === 'string' ? photo.imageUrl : '';
+    if (!imageUrl) return items;
+
+    items.push({
+      imageUrl,
+      linkUrl: typeof photo.linkUrl === 'string' ? photo.linkUrl : '',
+      title: typeof photo.title === 'string' ? photo.title : ''
+    });
+
+    return items;
+  }, []);
 }
 
 export async function getContent(): Promise<SiteContent> {
