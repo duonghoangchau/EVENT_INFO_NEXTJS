@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getContent, saveContent } from '@/lib/content';
 import { isLoggedIn } from '@/lib/auth';
 
@@ -18,6 +19,8 @@ export async function POST(req: NextRequest) {
 
     const body = JSON.parse(text);
     await saveContent(body);
+    revalidatePath('/');
+    revalidatePath('/admin');
     return NextResponse.json({ ok: true });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to save content';

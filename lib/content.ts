@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { unstable_noStore as noStore } from 'next/cache';
 import seedContent from '@/data/site-content.json';
 
 export type EventPhotoItem = {
@@ -163,6 +164,8 @@ async function saveLocalContent(content: SiteContent) {
 }
 
 export async function getContent(): Promise<SiteContent> {
+  noStore();
+
   const supabase = createSupabaseAdminClient();
 
   if (!supabase) {
