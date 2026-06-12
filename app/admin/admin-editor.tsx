@@ -5,7 +5,6 @@ import type { EventPhotoItem, SiteContent } from '@/lib/content';
 const textFields = [
   'siteTitle',
   'logoUrl',
-  'zaloUrl',
   'bannerImageUrl',
   'bannerTitle',
   'bannerSubtitle',
@@ -18,8 +17,6 @@ const textFields = [
   'eventMapUrl',
   'journeyTitleTop',
   'journeyTitleBottom',
-  'memoryTitle',
-  'memoryCaption',
   'eventPhotosTitle',
   'footerCompany',
   'footerUrl'
