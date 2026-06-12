@@ -6,7 +6,6 @@ const textFields = [
   'siteTitle',
   'logoUrl',
   'zaloUrl',
-  'zaloImageUrl',
   'bannerImageUrl',
   'bannerTitle',
   'bannerSubtitle',
@@ -17,11 +16,6 @@ const textFields = [
   'eventDateISO',
   'eventLocation',
   'eventMapUrl',
-  'rewardTitle1',
-  'rewardTitle2',
-  'rewardDesc',
-  'rewardAlert',
-  'carousel1Title',
   'journeyTitleTop',
   'journeyTitleBottom',
   'memoryTitle',
@@ -31,7 +25,7 @@ const textFields = [
   'footerUrl'
 ];
 const areaFields = ['letterHtml'];
-const arrayFields = ['carousel1Images', 'memoryImages'];
+const arrayFields: string[] = [];
 
 function setFieldValue(old: any, key: string, value: any) {
   return { ...old, [key]: value };
