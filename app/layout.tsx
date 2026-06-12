@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Event Information Page',
-  description: 'Trang thông tin sự kiện có admin quản trị nội dung'
+  description: 'Kỷ niệm 50 năm thành lập THÀNH CÔNG'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
